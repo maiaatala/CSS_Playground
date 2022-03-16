@@ -1,0 +1,84 @@
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  --background: #282a36;
+  --background02: #44475a;
+  --foreground: #f8f8f2;
+  --background03: #6272a4;
+  --Cyan: #8be9fd;
+  --Green: #50fa7b;
+  --Orange: #ffb86c;
+  --Pink: #ff79c6;
+  --Purple: #bd93f9;
+  --Red: #ff5555;
+  --Yellow: #f1fa8c;
+
+  --spacing: 0.07rem;
+  --radius: 0.25rem;
+  --max-width: 1170px;
+  --fixed-width: 450px;
+
+  --clr-orange-1: hsl(12, 83%, 98%);
+  --clr-orange-2: hsl(14, 91%, 95%);
+  --clr-orange-3: hsl(12, 89%, 89%);
+  --clr-orange-4: hsl(13, 87%, 82%);
+  --clr-orange-5: hsl(13, 88%, 68%);
+  --clr-orange-6: hsl(13, 88%, 55%);
+  --clr-orange-7: hsl(13, 74%, 49%);
+  --clr-orange-8: hsl(13, 74%, 33%);
+  --clr-orange-9: hsl(13, 73%, 25%);
+  --clr-orange-10: hsl(13, 73%, 16%);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  box-sizing: border-box;
+}
+
+.Loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--background);
+  /* background: transparent; */
+}
+.Loading h1 {
+  position: relative;
+  font-size: 8vw;
+  color: transparent;
+  /* -webkit-text-stroke: 0.1vw var(--background03); */
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.Loading h1::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: var(--Green);
+  -webkit-text-stroke: 0vw var(--background03);
+  border-right: 4px solid var(--Green);
+  overflow: hidden;
+  animation: animate 6s linear infinite;
+}
+@keyframes animate {
+  0%,
+  10%,
+  100% {
+    width: 0;
+  }
+  70%,
+  90% {
+    width: 100%;
+  }
+}
