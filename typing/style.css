@@ -17,26 +17,31 @@ Variables
   --Red: #ff5555;
   --Yellow: #f1fa8c;
 
-  --maxlenght: 16;
-  --wordCount: 6;
-  --fontSize: 60px;
-  --boxSize: 90px;
-  --fontWeight: 400;
-  --spacing: 0.07rem;
-  --radius: 0.25rem;
-  --max-width: 1170px;
-  --fixed-width: 450px;
+  /* dont change */
+  --boxMarginTop: 30px;
 
-  --clr-orange-1: hsl(12, 83%, 98%);
-  --clr-orange-2: hsl(14, 91%, 95%);
-  --clr-orange-3: hsl(12, 89%, 89%);
-  --clr-orange-4: hsl(13, 87%, 82%);
-  --clr-orange-5: hsl(13, 88%, 68%);
-  --clr-orange-6: hsl(13, 88%, 55%);
-  --clr-orange-7: hsl(13, 74%, 49%);
-  --clr-orange-8: hsl(13, 74%, 33%);
-  --clr-orange-9: hsl(13, 73%, 25%);
-  --clr-orange-10: hsl(13, 73%, 16%);
+  /* change when changing the words */
+  --maxlenght: 16;
+  --numberOfWords: 6;
+
+  --fontSize: 60px;
+  /* boxSize = fontSize + 30 
+    moveDown = (100+30)*6 + topOffset*/
+  --boxSize: 90px;
+  /* change topOffset as to aling THE FIRST WORD */
+  --topOffset: -40px;
+
+  /* sinkDown: (neg)(boxSize+boxMarginTop)*6 + topOffset */
+  --sinkDown: -760px;
+
+  /* change marginBtween as wanted */
+  --marginBetween: 20px;
+  --fontWeight: 400;
+
+  /* typing animation speed  */
+  --typingSpeed: 2.5s;
+  /* slideSpeed = typingSpeed * numberOfWords */
+  --slideSpeed: 15s;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap");
@@ -67,7 +72,7 @@ body {
 }
 
 .typing .dynamic-text {
-  margin-left: 15px;
+  margin-left: var(--marginBetween);
   height: var(--boxSize);
   line-height: var(--boxSize);
   /* background: red; */
@@ -76,19 +81,19 @@ body {
 
 .dynamic-text li {
   list-style: none;
-  margin-top: 30px;
+  margin-top: var(--boxMarginTop);
   font-weight: var(--fontWeight);
   font-size: var(--fontSize);
   color: var(--Green);
   position: relative;
-  top: -40px;
+  top: var(--topOffset);
   overflow: hidden;
   /* stops screen from moving */
-  animation: slide 12s steps(var(--wordCount)) infinite;
+  animation: slide var(--slideSpeed) steps(var(--numberOfWords)) infinite;
 }
 @keyframes slide {
   100% {
-    top: -760px;
+    top: var(--sinkDown);
   }
 }
 
@@ -107,13 +112,18 @@ body {
   border-left: 2px solid var(--Green);
   /* steps largest word lenght */
   background: var(--background);
-  animation: typing 2s steps(var(--maxlenght)) infinite;
+  animation: typing var(--typingSpeed) steps(var(--maxlenght)) infinite;
   /* mandar a border left parar quando chegar na border right 
   algo com fit content*/
 }
 @keyframes typing {
+  0%,
+  10%,
   100% {
+    left: 0%;
+  }
+  60%,
+  95% {
     left: 100%;
-    margin: 0 -35px 0 35px;
   }
 }
