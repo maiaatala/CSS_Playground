@@ -1,0 +1,278 @@
+:root {
+  --background: #282a36;
+  --background02: #44475a;
+  --foreground: #f8f8f2;
+  --background03: #6272a4;
+  --Cyan: #8be9fd;
+  --DarkCyan: #197286;
+  --DarkestCyan: #08313a;
+  --Green: #50fa7b;
+  --Orange: #ffb86c;
+  --Pink: #ff79c6;
+  --Purple: #bd93f9;
+  --Red: #ff5555;
+  --Yellow: #f1fa8c;
+
+  /* dont change */
+  --TopPos: 893px;
+  --LeftMargin: 87px;
+  --BottomPos: 60px;
+
+  --ContainerHeight: 127px;
+  --ContainerWidth: 852px;
+
+  --LogoWidth: 191px;
+
+  --TextLeftMargin: 33px;
+  --TextTopMargin: 27px;
+  --TextBottomMargin: 10px;
+  /* --BottomTextPos: 74px; */
+
+  /* SquareDivison+BottomSquareHeight = ContainerHeight*/
+  --SquareDivison: 80px;
+  --BottomSquareHeight: 47px;
+
+  --MiddleWidth: 820px;
+  /* FrontWidth: middleWidth -30 -LogoWidth */
+  --FrontWidth: 599px;
+
+  --AniTime: 7s;
+
+  /* SAME VALUES BUT NEGATIVE */
+  --NegTopPos: -893px;
+  --NegLeftMargin: -87px;
+  --NegBottomPos: -60px;
+  --NegContainerHeight: -127px;
+  --NegContainerWidth: -852px;
+  --NegLogoWidth: -191px;
+  --NegTextLeftMargin: -33px;
+  --NegTextTopMargin: -27px;
+  --NegTextBottomMargin: -10px;
+  --NegSquareDivison: -80px;
+  --NegBottomSquareHeight: -47px;
+  --NegMiddleWidth: -820px;
+  --NegFrontWidth: -599px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background: var(--background);
+  text-transform: capitalize;
+  /* background: transparent; */
+}
+
+.animation-container {
+  margin-left: var(--LeftMargin);
+  display: flex;
+  position: absolute;
+  top: var(--TopPos);
+  height: var(--ContainerHeight);
+  width: var(--ContainerWidth);
+  animation-iteration-count: 1;
+  /* max-height: 12vh;
+  max-width: 70vw; */
+  /* border: 5px solid red; */
+  overflow: hidden;
+}
+.logo {
+  position: absolute;
+  top: 0;
+  height: var(--ContainerHeight);
+  width: var(--LogoWidth);
+  background-color: transparent;
+  /* background-color: var(--foreground); */
+
+  z-index: 10;
+  animation-iteration-count: inherit;
+  animation: dropLogo var(--AniTime) linear;
+  /* justify-content: center; */
+}
+@keyframes dropLogo {
+  0%,
+  100% {
+    top: var(--NegContainerHeight);
+    left: var(--NegLogoWidth);
+    border-right: 5px solid var(--Orange);
+    background-color: var(--foreground);
+  }
+  1%,
+  99% {
+    top: 0px;
+    border-right: 5px solid var(--Orange);
+    left: 0px;
+    background-color: var(--foreground);
+  }
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  height: var(--SquareDivison);
+  width: var(--ContainerWidth);
+  /* background-color: var(--Cyan); */
+  background-color: transparent;
+  z-index: 3;
+  animation-iteration-count: inherit;
+  animation: slideBack var(--AniTime) linear;
+}
+@keyframes slideBack {
+  0%,
+  100% {
+    background-color: var(--Cyan);
+    left: var(--NegContainerWidth);
+  }
+  3%,
+  97% {
+    background-color: var(--Cyan);
+    left: 0px;
+  }
+}
+
+.middle {
+  position: absolute;
+  top: 0;
+  height: var(--SquareDivison);
+  width: var(--MiddleWidth);
+  /* background-color: var(--Orange); */
+  background: transparent;
+  z-index: 4;
+  animation-iteration-count: inherit;
+  animation: slideMiddle var(--AniTime) linear;
+}
+@keyframes slideMiddle {
+  0%,
+  100% {
+    background-color: var(--Orange);
+    left: var(--NegContainerWidth);
+  }
+  6%,
+  94% {
+    background-color: var(--Orange);
+    left: 0px;
+  }
+}
+
+.front {
+  position: absolute;
+  top: 0;
+  left: var(--LogoWidth);
+  height: var(--SquareDivison);
+  width: var(--FrontWidth);
+  background: transparent;
+  /* background-color: var(--DarkestCyan); */
+
+  z-index: 5;
+  animation-iteration-count: inherit;
+  animation: slideFront var(--AniTime) linear;
+}
+@keyframes slideFront {
+  0%,
+  100% {
+    background-color: var(--DarkestCyan);
+    left: var(--NegContainerWidth);
+  }
+  6%,
+  90% {
+    background-color: var(--DarkestCyan);
+    left: var(--LogoWidth);
+  }
+}
+
+.Name {
+  position: absolute;
+  top: 0;
+  left: var(--LogoWidth);
+  margin-top: var(--TextTopMargin);
+  margin-left: var(--TextLeftMargin);
+  /* color: var(--foreground); */
+  color: transparent;
+  z-index: 6;
+  animation-iteration-count: inherit;
+  animation: slideName var(--AniTime) linear;
+}
+@keyframes slideName {
+  0%,
+  100% {
+    left: var(--NegContainerWidth);
+    color: var(--foreground);
+  }
+  8%,
+  89% {
+    color: var(--foreground);
+    left: var(--LogoWidth);
+  }
+}
+
+.lower {
+  position: absolute;
+  top: var(--SquareDivison);
+  align-self: flex-end;
+  height: var(--BottomSquareHeight);
+  width: var(--ContainerWidth);
+  background: transparent;
+  /* background-color: var(--DarkCyan); */
+  z-index: 1;
+  animation-iteration-count: inherit;
+  animation: dropLower var(--AniTime) linear;
+}
+@keyframes dropLower {
+  0%,
+  100% {
+    background-color: var(--DarkCyan);
+    top: var(--NegContainerHeight);
+  }
+  6%,
+  90% {
+    background-color: var(--DarkCyan);
+    top: var(--SquareDivison);
+  }
+}
+
+.desc {
+  position: absolute;
+  bottom: 0px;
+  left: var(--LogoWidth);
+  margin-top: 8px;
+  margin-bottom: var(--TextBottomMargin);
+  margin-left: var(--TextLeftMargin);
+  color: var(--foreground);
+  color: transparent;
+  z-index: 2;
+  animation-iteration-count: inherit;
+  animation: dropDesc var(--AniTime) linear;
+}
+@keyframes dropDesc {
+  0%,
+  100% {
+    color: var(--foreground);
+
+    top: var(--NegContainerHeight);
+  }
+  8%,
+  89% {
+    color: var(--foreground);
+
+    top: var(--SquareDivison);
+  }
+}
+
+/* 
+4 seg transacao
+6 seg parado
+2 seg transacao
+12 seg
+
+0% -> 30%
+30% -> 83%
+84& -> 100%
+*/
