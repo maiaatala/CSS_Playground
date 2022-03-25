@@ -1,0 +1,96 @@
+// sass --watch sass/style.scss:css/style.css
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+// so i can reuse this
+@mixin align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  color: rgb(129, 186, 252);
+
+  .parallax_wrapper {
+    perspective: 300px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .intro_screen {
+      height: 100vh;
+      background-color: tomato;
+      background-image: url("../1.jpeg");
+      background-size: cover;
+      @include align-center();
+    }
+
+    .outro_screen {
+      height: 100vh;
+      background-color: teal;
+      @include align-center();
+    }
+    .parallax_group {
+      position: relative;
+      height: 100vh;
+      transform-style: preserve-3d;
+
+      .parallax_layer {
+        position: absolute;
+        inset: 0;
+        @include align-center();
+      }
+      .mid_layer {
+        transform: translateZ(0);
+        h2 {
+          transform: translateY(-15vh);
+        }
+      }
+      .base_layer {
+        // scale = 1- (translate/perspective)
+        transform: translateZ(-300px) scale(2);
+      }
+      .top_layer {
+        transform: translateZ(250px) scale(0.166);
+        p {
+          padding: 20px;
+        }
+      }
+    }
+
+    #intro {
+      z-index: 0;
+    }
+    #group-1 {
+      // z-index: -1;
+    }
+    #group-1 > .base_layer {
+      background-color: crimson;
+      background-image: url("../1.jpeg");
+      z-index: -2;
+    }
+    #group-1 > .mid_layer {
+      z-index: -1;
+    }
+    #group-2 {
+    }
+    #group-2 > .mid_layer {
+      background-image: url("../index.jpeg");
+      z-index: 0;
+    }
+    #group-2 > .top_layer {
+      // background-color: rgb(7, 71, 122);
+      color: rgb(10, 35, 68);
+      z-index: 2;
+    }
+    #outro {
+    }
+  }
+}
